@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestBST(t *testing.T) {
+func TestBST1(t *testing.T) {
 	tests := []struct {
 		name  string
 		input []int
@@ -40,7 +40,9 @@ func TestBST(t *testing.T) {
 	}
 
 	for _, test := range tests {
+		//test := test
 		t.Run(test.name, func(t *testing.T) {
+			//t.Parallel()
 			bstTree := NewBST()
 			c := make(chan int)
 

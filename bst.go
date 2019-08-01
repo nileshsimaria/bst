@@ -1,10 +1,10 @@
-// Package bst implements binary search tree data structure
-// purely for the educational purpose.
+// Package bst implements binary search tree data structure; purely for the educational purpose.
+// It supports methods like Add one node, add bulk, walk. It does not support delete node.
 package bst
 
 import "fmt"
 
-// Node type of the BST
+// Node type of the BST. It stores int data.
 type Node struct {
 	data  int
 	left  *Node
@@ -25,7 +25,7 @@ type BST struct {
 	root *Node
 }
 
-//NewBST returns new empty BST
+// NewBST returns new empty BST
 func NewBST() *BST {
 	return &BST{
 		root: nil,
@@ -44,6 +44,7 @@ func (t *BST) AddBulk(data ...int) error {
 
 // Add into BST
 func (t *BST) Add(data int) error {
+	//time.Sleep(time.Second)
 	if t.root == nil {
 		t.root = NewNode(data, nil, nil)
 		return nil
@@ -107,7 +108,9 @@ func findParent(n *Node, data int) (*Node, error) {
 	return nil, nil
 }
 
-// Walk the tree
+// Walk the tree in in-order fashion i.e. sort
+// the data. Send back the data in the channel to
+// the caller.
 func (t *BST) Walk(dataC chan<- int) {
 	walk(t.root, dataC)
 	close(dataC)
